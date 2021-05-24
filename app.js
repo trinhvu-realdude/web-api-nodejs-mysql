@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
@@ -26,4 +26,4 @@ app.use(function(err, req, res, next) {
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-module.exports = app;
+// module.exports = app;
