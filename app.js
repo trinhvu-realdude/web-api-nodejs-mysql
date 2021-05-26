@@ -1,29 +1,32 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 const path = require('path');
-const cookieParser = require('cookie-parser');
-const userRouter = require('./routes/users');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-app.use('/users', userRouter);
+const db = require("./models");
 
-app.set('views', (path.join(__dirname, '/views')));
-app.set('view engine', 'ejs');
+const corsOptions = {
+    origin: "http://localhost:8081"
+};
 
-app.use(express.json());
-app.use(cookieParser());
-app.use(express.urlencoded({ extended: true }));
+// app.set('views', (path.join(__dirname, '/views')));
+// app.set('view engine', 'ejs');
 
-app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get('/', (req, res) => {
+    res.json({
+        message: "Hello Hello"
+    });
+})
+
+require("./routes/user.route")(app);
+
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`)
 });
-
-app.listen(port, () => console.log(`Listening on port ${port}`));
-
-// module.exports = app;
