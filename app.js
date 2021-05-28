@@ -1,16 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 const corsOptions = {
-    origin: "http://localhost:3000"
+    origin: "http://localhost:8081"
 };
 
-// app.set('views', (path.join(__dirname, '/views')));
-// app.set('view engine', 'ejs');
+app.set('views', (path.join(__dirname, '/views')));
+app.set('view engine', 'ejs');
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());

@@ -17,7 +17,11 @@ exports.create = async (req, res) => {
 
 exports.findAll = async (req, res) => {
     const result = await User.findAll();
-    res.send(result);
+    
+    res.render('user-list', {
+        title: "User List",
+        userData: result
+    });
 };
 
 exports.findOne = async (req, res) => {
