@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('../database');
 
 router.get('/users-list', (req, res, next) => {
-    const sql = "SELECT * FROM person";
+    const sql = "SELECT * FROM users";
 
     db.query(sql, (err, data, fields) => {
         if (err) throw err;
@@ -14,7 +14,7 @@ router.get('/users-list', (req, res, next) => {
 
 router.get('/edit/:id', (req, res, next) => {
     const userID = req.params.id;
-    const sql = `SELECT * FROM person WHERE id=${userID}`;
+    const sql = `SELECT * FROM users WHERE id=${userID}`;
 
     db.query(sql, (err, data) => {
         if (err) throw err;
@@ -26,7 +26,7 @@ router.get('/edit/:id', (req, res, next) => {
 router.post('/edit/:id', (req, res, next) => {
     const id = req.params.id;
     const updateData = req.body;
-    const sql = `UPDATE person SET ? WHERE id = ?`;
+    const sql = `UPDATE users SET ? WHERE id = ?`;
 
     db.query(sql, [updateData, id], (err, data) => {
         if (err) throw err;
