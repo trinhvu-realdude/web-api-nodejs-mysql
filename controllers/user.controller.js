@@ -1,14 +1,7 @@
 const db = require("../models");
-const User = db.tutorials;
-const Op = db.Sequelize.Op;
+const User = db.user;
 
-exports.create = (req, res) => {
-    if (!req.body.firstName) {
-        res.status(400).send({
-            message: "Content can not be empty!"
-        });
-        return;
-    }
+exports.create = async (req, res) => {
 
     const user = {
         firstName: req.body.firstName,
@@ -16,22 +9,20 @@ exports.create = (req, res) => {
         email: req.body.email,
         city: req.body.city
     };
+    console.log(user);
 
-    User.create(user)
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message
-            });
-        });
+    const result = await User.create(user);
+    res.send(result);
 };
 
-exports.findAll = (req, res) => {
-    
+exports.findAll = async (req, res) => {
+    const result = await User.findAll();
+    res.send(result);
 };
 
-exports.findOne = (req, res) => {
+exports.findOne = async (req, res) => {
+    const id = req.params.id;
 
+    const result = await User.findByPk(id);
+    res.send(result);
 };
