@@ -1,6 +1,4 @@
 const db = require("../models");
-const User = db.user;
-const Role = db.role;
 const UserRole = db.user_roles;
 
 exports.create = async (req, res) => {
