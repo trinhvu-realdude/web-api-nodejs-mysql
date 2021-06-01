@@ -10,9 +10,7 @@ exports.create = async (req, res) => {
     };
     console.log(tutorial);
 
-    const result = await Tutorial.create(tutorial, {
-        association: [ db.Tutorial_User ]
-    });
+    const result = await Tutorial.create(tutorial);
     res.send(result);
 };
 
