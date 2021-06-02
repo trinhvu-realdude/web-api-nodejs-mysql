@@ -20,7 +20,7 @@ const findAllUserTutorial = () => User.findAll({
 const findAllUserRole = () => User.findAll({
     include: [
         {
-            model: Role,
+            model: Role
         }
     ]
 });

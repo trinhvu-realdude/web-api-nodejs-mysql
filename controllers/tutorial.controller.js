@@ -19,6 +19,4 @@ exports.findAll = async (req, res) => {
     res.send(result);
 };
 
-exports.findOne = (req, res) => {
-
-};
+exports.findOne = (req, res) => {};

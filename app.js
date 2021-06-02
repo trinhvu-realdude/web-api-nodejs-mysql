@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 require("./routes/user.route")(app);
 require("./routes/tutorial.route")(app);

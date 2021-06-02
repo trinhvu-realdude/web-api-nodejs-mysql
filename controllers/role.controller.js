@@ -22,7 +22,7 @@ exports.findAllUserRole = async (req, res) => {
     const user_role = await Role.findAll({
         include: [
             {
-                model: User,
+                model: User
             }
         ]
     });
