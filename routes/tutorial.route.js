@@ -7,5 +7,7 @@ module.exports = app => {
 
     router.get('/', tutorials.findAll);
 
+    router.get('/:id', tutorials.findOne);
+
     app.use('/api/tutorials', router);
 }
