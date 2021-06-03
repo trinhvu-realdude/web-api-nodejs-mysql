@@ -7,9 +7,9 @@ module.exports = app => {
 
     router.get('/', users.findAll);
 
-    router.get('/user-tutorial', users.findAllUserTutorial);
+    router.get('/tutorials', users.findAllUserTutorial);
 
-    router.get('/user-role', users.findAllUserRole);
+    router.get('/roles', users.findAllUserRole);
 
     router.get('/:id', users.findOne);
 

@@ -7,7 +7,7 @@ module.exports = app => {
 
     router.get('/', roles.findAll);
 
-    router.get('/user-role', roles.findAllUserRole);
+    router.get('/users', roles.findAllUserRole);
 
     app.use('/api/roles', router);
 }
