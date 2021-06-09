@@ -4,7 +4,8 @@ const {
     findUserId,
     findAllUserTutorial,
     findAllUserRole,
-    deleteUserId
+    deleteUserId,
+    updateUserId
 } = require("../services/user.service");
 
 exports.create = async (req, res) => {
@@ -50,14 +51,36 @@ exports.deleteUserId = async (req, res) => {
     const num = await deleteUserId(id);
 
     if (num == 1) {
-        res.redirect(302,'/api/users');
+        res.redirect(302, '/api/users');
     } else {
         res.send("Error!");
     }
 };
 
 exports.editUserId = async (req, res) => {
+    const id = req.params.id;
+
+    const user_id = await findUserId(id);
+
+    // console.log(user_id);
+
     res.render('user-edit', {
-        title: "User Edit"
-    })
+        title: "User Edit",
+        editData: user_id
+    });
+};
+
+exports.updateUserId = async (req, res) => {
+    const id = req.params.id;
+
+    console.log(id);
+
+    const num = await updateUserId(req.body, id);
+
+    if (num == 1) {
+        res.redirect(302, '/api/users');
+    }
+    else {
+        res.send(`Cannot update Tutorial with id=${id}`);
+    }
 }

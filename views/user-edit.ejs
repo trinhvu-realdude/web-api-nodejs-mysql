@@ -19,7 +19,7 @@
             <div class="container text-center">
                 <h1>Edit</h1>
             </div>
-            <form action="<%=(typeof editData!='undefined')?'/users/edit/'+editData.id:'/users/create'%>" method="post">
+            <form action="<%=(typeof editData!='undefined')?'/api/users/edit/'+editData.id:'/api/users/edit'%>" method="post">
                 <div class="form-group">
                     <label for="firstName">First Name</label>
                     <input type="text" class="form-control" placeholder="First Name" name="firstName" required value="<%=(typeof editData!='undefined')? editData.firstName:''%>">

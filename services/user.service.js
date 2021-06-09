@@ -31,11 +31,18 @@ const deleteUserId = (id) => User.destroy({
     }
 });
 
+const updateUserId = (body, id) => User.update(body, {
+    where: {
+        id: id
+    }
+});
+
 module.exports = {
     createUser,
     getAllUser,
     findUserId,
     findAllUserTutorial,
     findAllUserRole,
-    deleteUserId
+    deleteUserId,
+    updateUserId
 }

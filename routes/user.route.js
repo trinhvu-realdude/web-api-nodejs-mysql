@@ -17,5 +17,7 @@ module.exports = app => {
 
     router.get('/users/edit/:id', users.editUserId);
 
+    router.post('/users/edit/:id', users.updateUserId);
+
     app.use('/api', router);
 }
