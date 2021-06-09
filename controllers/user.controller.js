@@ -50,8 +50,14 @@ exports.deleteUserId = async (req, res) => {
     const num = await deleteUserId(id);
 
     if (num == 1) {
-        res.send("Deleted!")
+        res.redirect(302,'/api/users');
     } else {
         res.send("Error!");
     }
 };
+
+exports.editUserId = async (req, res) => {
+    res.render('user-edit', {
+        title: "User Edit"
+    })
+}

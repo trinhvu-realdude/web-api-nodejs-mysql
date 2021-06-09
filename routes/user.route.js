@@ -7,13 +7,15 @@ module.exports = app => {
 
     router.get('/users', users.findAll);
 
-    router.get('/userstutorials', users.findAllUserTutorial);
+    router.get('/users/tutorials', users.findAllUserTutorial);
 
     router.get('/users/roles', users.findAllUserRole);
 
     router.get('/users/:id', users.findOne);
 
-    router.delete('/users/:id', users.deleteUserId);
+    router.get('/users/delete/:id', users.deleteUserId);
+
+    router.get('/users/edit/:id', users.editUserId);
 
     app.use('/api', router);
 }
