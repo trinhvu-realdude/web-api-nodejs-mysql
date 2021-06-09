@@ -21,6 +21,7 @@ require("./routes/user.route")(app);
 require("./routes/tutorial.route")(app);
 require("./routes/role.route")(app);
 require("./routes/user_role.route")(app);
+require("./routes/beat.route")(app);
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)

@@ -25,10 +25,17 @@ const findAllUserRole = () => User.findAll({
     ]
 });
 
+const deleteUserId = (id) => User.destroy({
+    where: {
+        id: id
+    }
+});
+
 module.exports = {
     createUser,
     getAllUser,
     findUserId,
     findAllUserTutorial,
-    findAllUserRole
+    findAllUserRole,
+    deleteUserId
 }

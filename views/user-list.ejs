@@ -45,7 +45,7 @@
                                 <td><%=data.email %></td>
                                 <td><%=data.city%></td>
                                 <td><a href="/users/edit/<%=data.id%>"><button class="btn btn-primary">EDIT</button></a></td>
-                                <td><a href="/users/delete"><button class="btn btn-danger">DELETE</button></a></td>
+                                <td><a href="/api/users/delete/<%=data.id%>"><button class="btn btn-danger">DELETE</button></a></td>
                             </tr>
                             <% i++; }) %>
                             <% } else { %>
@@ -56,11 +56,10 @@
                 </tbody>
             </table>
             <div>
-                <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/657875741&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/joseus" title="Joseus" target="_blank" style="color: #cccccc; text-decoration: none;">Joseus</a> · <a href="https://soundcloud.com/joseus/silence-joseus" title="Joseus - SILENCE(original mix)" target="_blank" style="color: #cccccc; text-decoration: none;">Joseus - SILENCE(original mix)</a></div>            
+                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/972401491&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/tr-nh-v-328410502" title="Trình Vũ" target="_blank" style="color: #cccccc; text-decoration: none;">Trình Vũ</a> · <a href="https://soundcloud.com/tr-nh-v-328410502/tren-lau-cao-remix" title="Trên Lầu Cao - Rhymastic (remix)" target="_blank" style="color: #cccccc; text-decoration: none;">Trên Lầu Cao - Rhymastic (remix)</a></div>
             </div>
         </div>
     </section>
-
     <footer>
         <%- include('./partials/footer'); %>
     </footer>

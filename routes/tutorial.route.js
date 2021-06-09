@@ -3,11 +3,11 @@ module.exports = app => {
 
     const router = require("express").Router();
 
-    router.post('/', tutorials.create);
+    router.post('/tutorials', tutorials.create);
 
-    router.get('/', tutorials.findAll);
+    router.get('/tutorials', tutorials.findAll);
 
-    router.get('/:id', tutorials.findOne);
+    router.get('/tutorials/:id', tutorials.findOne);
 
-    app.use('/api/tutorials', router);
+    app.use('/api', router);
 }

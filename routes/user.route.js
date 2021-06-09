@@ -3,15 +3,17 @@ module.exports = app => {
 
     const router = require("express").Router();
 
-    router.post('/', users.create);
+    router.post('/users', users.create);
 
-    router.get('/', users.findAll);
+    router.get('/users', users.findAll);
 
-    router.get('/tutorials', users.findAllUserTutorial);
+    router.get('/userstutorials', users.findAllUserTutorial);
 
-    router.get('/roles', users.findAllUserRole);
+    router.get('/users/roles', users.findAllUserRole);
 
-    router.get('/:id', users.findOne);
+    router.get('/users/:id', users.findOne);
 
-    app.use('/api/users', router);
+    router.delete('/users/:id', users.deleteUserId);
+
+    app.use('/api', router);
 }

@@ -1,20 +1,22 @@
-const db = require("../models");
-const UserRole = db.user_roles;
+const {
+    createUserRole,
+    findAllUserRole
+} = require("../services/user_role.service");
 
 exports.create = async (req, res) => {
-
+    const {user_id, role_id} = req.body;
     const user_role = {
-        user_id: req.body.user_id,
-        role_id: req.body.role_id
+        user_id: user_id,
+        role_id: role_id
     };
 
     console.log(user_role);
 
-    const result = await UserRole.create(user_role);
+    const result = await createUserRole(user_role);
     res.send(result);
 };
 
 exports.findAll = async (req, res) => {
-    const result = await UserRole.findAll();
+    const result = await findAllUserRole();
     res.send(result);
 };

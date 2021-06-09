@@ -3,7 +3,8 @@ const {
     createUser,
     findUserId,
     findAllUserTutorial,
-    findAllUserRole
+    findAllUserRole,
+    deleteUserId
 } = require("../services/user.service");
 
 exports.create = async (req, res) => {
@@ -41,4 +42,16 @@ exports.findAllUserTutorial = async (req, res) => {
 exports.findAllUserRole = async (req, res) => {
     const user_role = await findAllUserRole();
     res.send(user_role);
-}
+};
+
+exports.deleteUserId = async (req, res) => {
+    const id = req.params.id;
+
+    const num = await deleteUserId(id);
+
+    if (num == 1) {
+        res.send("Deleted!")
+    } else {
+        res.send("Error!");
+    }
+};

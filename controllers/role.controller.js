@@ -1,6 +1,8 @@
-const db = require("../models");
-const Role = db.role;
-const User = db.user;
+const {
+    createRole,
+    findAllRole,
+    findAllUserRole
+} = require("../services/role.service");
 
 exports.create = async (req, res) => {
 
@@ -9,23 +11,16 @@ exports.create = async (req, res) => {
     };
     console.log(role);
 
-    const result = await Role.create(role);
+    const result = await createRole(role);
     res.send(result);
 };
 
 exports.findAll = async (req, res) => {
-    const result = await Role.findAll();
+    const result = await findAllRole();
     res.send(result);
 };
 
 exports.findAllUserRole = async (req, res) => {
-    const user_role = await Role.findAll({
-        include: [
-            {
-                model: User
-            }
-        ]
-    });
-
+    const user_role = await findAllUserRole();
     res.send(user_role);
 }

@@ -3,9 +3,9 @@ module.exports = app => {
 
     const router = require("express").Router();
 
-    router.post('/', user_roles.create);
+    router.post('/user-role', user_roles.create);
 
-    router.get('/', user_roles.findAll);
+    router.get('/user-role', user_roles.findAll);
 
-    app.use('/api/user-role', router);
+    app.use('/api', router);
 }

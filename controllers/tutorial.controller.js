@@ -1,4 +1,8 @@
-const {createTutorial, findAllTutorial, findTutorialId} = require("../services/tutorial.service");
+const {
+    createTutorial, 
+    findAllTutorial, 
+    findTutorialId
+} = require("../services/tutorial.service");
 
 exports.create = async (req, res) => {
     const {title, description, user_id} = req.body
