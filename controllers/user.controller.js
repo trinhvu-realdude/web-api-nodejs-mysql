@@ -4,6 +4,7 @@ const {
     findUserId,
     findAllUserTutorial,
     findAllUserRole,
+    findAllUserRoleId,
     deleteUserId,
     updateUserId
 } = require("../services/user.service");
@@ -44,6 +45,15 @@ exports.findAllUserRole = async (req, res) => {
     const user_role = await findAllUserRole();
     res.send(user_role);
 };
+
+exports.findAllUserRoleId = async (req, res) => {
+    const id = req.params.id;
+    const user_role_id = await findAllUserRoleId(id);
+    res.render('user-profile', {
+        title: 'User Profile',
+        userData: user_role_id
+    })
+}
 
 exports.deleteUserId = async (req, res) => {
     const id = req.params.id;

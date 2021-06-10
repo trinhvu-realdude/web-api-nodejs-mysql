@@ -25,6 +25,14 @@ const findAllUserRole = () => User.findAll({
     ]
 });
 
+const findAllUserRoleId = (id) => User.findByPk(id, {
+    include: [
+        {
+            model: Role
+        }
+    ]
+})
+
 const deleteUserId = (id) => User.destroy({
     where: {
         id: id
@@ -43,6 +51,7 @@ module.exports = {
     findUserId,
     findAllUserTutorial,
     findAllUserRole,
+    findAllUserRoleId,
     deleteUserId,
     updateUserId
 }
