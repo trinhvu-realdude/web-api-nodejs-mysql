@@ -9,7 +9,7 @@ const {
     updateUserId
 } = require("../services/user.service");
 
-exports.create = async (req, res) => {
+exports.createNewUser = async (req, res) => {
     const {firstName, lastName, email, city} = req.body;
     const user = {
         firstName: firstName,
@@ -83,14 +83,12 @@ exports.editUserId = async (req, res) => {
 exports.updateUserId = async (req, res) => {
     const id = req.params.id;
 
-    console.log(id);
-
     const num = await updateUserId(req.body, id);
 
     if (num == 1) {
         res.redirect(302, '/api/users');
     }
     else {
-        res.send(`Cannot update Tutorial with id=${id}`);
+        res.send(`Cannot update User with id=${id}`);
     }
 }

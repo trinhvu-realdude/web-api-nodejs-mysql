@@ -1,11 +1,13 @@
 module.exports = app => {
+    const {authUser} = require("../middleware/loginMiddle");
+
     const users = require("../controllers/user.controller");
 
     const router = require("express").Router();
 
-    router.post('/users', users.create);
+    router.post('/users', users.createNewUser);
 
-    router.get('/users', users.findAll);
+    router.get('/users', authUser, users.findAll);
 
     router.get('/users/tutorials', users.findAllUserTutorial);
 
