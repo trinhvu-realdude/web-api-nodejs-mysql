@@ -24,5 +24,5 @@ require("./routes/user_role.route")(app);
 require("./routes/beat.route")(app);
 
 app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+    console.log(`Server is listening on port ${PORT}`);
 });
