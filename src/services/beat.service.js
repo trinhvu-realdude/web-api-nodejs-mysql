@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../../models");
 const Beat = db.beat;
 
 const createBeat = (beat) => Beat.create(beat);

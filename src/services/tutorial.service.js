@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../../models");
 const Tutorial = db.tutorial;
 
 const createTutorial = (tutorial) => Tutorial.create(tutorial);
