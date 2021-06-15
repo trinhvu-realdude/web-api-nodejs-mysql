@@ -9,13 +9,16 @@ const checkEmail = (email) => User.findOne({
     }
 });
 
-const createUser = async (user) => await User.create({
-    name: user.name,
-    email: user.email,
-    password: user.password
+const createUser = async (user) => await User.create({name: user.name, email: user.email, password: user.password});
+
+const getUserByEmail = (email) => User.findOne({
+    where: {
+        email: email
+    }
 });
 
 module.exports = {
-   checkEmail,
-   createUser 
+    getUserByEmail,
+    checkEmail,
+    createUser
 }
