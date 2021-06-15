@@ -1,94 +1,23 @@
-const {
-    getAllUser,
-    createUser,
-    findUserId,
-    findAllUserTutorial,
-    findAllUserRole,
-    findAllUserRoleId,
-    deleteUserId,
-    updateUserId
-} = require("../services/user.service");
+const userService = require("../services/user.service");
+const jwt = require("jsonwebtoken");
+const {hash} = require("../common/hash");
 
-exports.createNewUser = async (req, res) => {
-    const {firstName, lastName, email, city} = req.body;
-    const user = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        city: city
-    };
-    console.log(user);
-    const result = await createUser(user);
-    res.send(result);
-};
-
-exports.findAll = async (req, res) => {
-    const result = await getAllUser();
-    res.render('user-list', {
-        title: "User List",
-        userData: result
-    });
-};
-
-exports.findOne = async (req, res) => {
-    const id = req.params.id;
-    const result = await findUserId(id);
-    res.send(result);
-};
-
-exports.findAllUserTutorial = async (req, res) => {
-    const users = await findAllUserTutorial();
-    res.send(users);
-};
-
-exports.findAllUserRole = async (req, res) => {
-    const user_role = await findAllUserRole();
-    res.send(user_role);
-};
-
-exports.findAllUserRoleId = async (req, res) => {
-    const id = req.params.id;
-    const user_role_id = await findAllUserRoleId(id);
-    res.render('user-profile', {
-        title: 'User Profile',
-        userData: user_role_id
-    })
-}
-
-exports.deleteUserId = async (req, res) => {
-    const id = req.params.id;
-
-    const num = await deleteUserId(id);
-
-    if (num == 1) {
-        res.redirect(302, '/api/users');
+exports.signUp = async (req, res) => {
+    const checkEmail = await userService.checkEmail(req.body.email);
+    if (checkEmail) {
+        res.status(409).send({message: "Email already exists!"});
     } else {
-        res.send("Error!");
+        const {name, email, password} = req.body;
+        const passwordHash = await hash(password.toString().trim());
+        const user = {
+            name: name,
+            email: email,
+            password: passwordHash
+        };
+
+        console.log(user);
+
+        const result = await userService.createUser(user);
+        res.send(result);
     }
 };
-
-exports.editUserId = async (req, res) => {
-    const id = req.params.id;
-
-    const user_id = await findUserId(id);
-
-    // console.log(user_id);
-
-    res.render('user-edit', {
-        title: "User Edit",
-        editData: user_id
-    });
-};
-
-exports.updateUserId = async (req, res) => {
-    const id = req.params.id;
-
-    const num = await updateUserId(req.body, id);
-
-    if (num == 1) {
-        res.redirect(302, '/api/users');
-    }
-    else {
-        res.send(`Cannot update User with id=${id}`);
-    }
-}

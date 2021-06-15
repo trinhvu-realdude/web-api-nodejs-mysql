@@ -3,55 +3,19 @@ const User = db.user;
 const Tutorial = db.tutorial;
 const Role = db.role;
 
-const createUser = (user) => User.create(user);
-
-const getAllUser = () => User.findAll();
-
-const findUserId = (id) => User.findByPk(id);
-
-const findAllUserTutorial = () => User.findAll({
-    include: [
-        {
-            model: Tutorial
-        }
-    ]
-});
-
-const findAllUserRole = () => User.findAll({
-    include: [
-        {
-            model: Role
-        }
-    ]
-});
-
-const findAllUserRoleId = (id) => User.findByPk(id, {
-    include: [
-        {
-            model: Role
-        }
-    ]
-})
-
-const deleteUserId = (id) => User.destroy({
+const checkEmail = (email) => User.findOne({
     where: {
-        id: id
+        email: email
     }
 });
 
-const updateUserId = (body, id) => User.update(body, {
-    where: {
-        id: id
-    }
+const createUser = async (user) => await User.create({
+    name: user.name,
+    email: user.email,
+    password: user.password
 });
 
 module.exports = {
-    createUser,
-    getAllUser,
-    findUserId,
-    findAllUserTutorial,
-    findAllUserRole,
-    findAllUserRoleId,
-    deleteUserId,
-    updateUserId
+   checkEmail,
+   createUser 
 }
