@@ -1,6 +1,9 @@
+require("dotenv").config();
 const userService = require("../services/user.service");
 const jwt = require("jsonwebtoken");
 const {hash, compare} = require("../common/hash");
+const config = require("../../config");
+const passport = require("passport");
 
 exports.signUp = async (req, res) => {
     try {
@@ -12,7 +15,7 @@ exports.signUp = async (req, res) => {
             const passwordHash = await hash(password.toString().trim());
             const user = {
                 name: name,
-                email: email,
+                email: email.trim(),
                 password: passwordHash
             };
 
@@ -22,31 +25,31 @@ exports.signUp = async (req, res) => {
             res.send(result);
         }
     } catch (error) {
+        console.log(error);
         res.send({message: "Something wrong!"});
     }
 };
 
-exports.signIn = async (req, res) => {
-    try {
-        const checkEmail = await userService.checkEmail(req.body.email);
-
-        if (checkEmail === null) {
-            res.send({message: "Invalid credentials"});
-        } else {
-            const user = await userService.getUserByEmail(req.body.email);
-            const comparePassword = await compare(req.body.password, user.dataValues.password);
-            if (comparePassword) {
-                const token = jwt.sign({
-                    email: checkEmail.email,
-                    userId: checkEmail.id
-                }, "secret");
-
-                res.send({message: "Signin successfully", token: token});
-            } else {
-                res.send({message: "Something wrong"});
-            }
+exports.signIn = async (req, res, next) => {
+    passport.authenticate('local-login', async (err, user) => {
+        if (err) {
+            return next(err);
         }
-    } catch (error) {
-        res.send(error);
-    }
+        if (!user) {
+            res.send("User doesn't exist");
+        }
+
+        const token = jwt.sign({
+            roleId: user.roleId,
+            userId: user.id,
+            email: user.email
+        }, config.app.secretKey);
+
+        res.json({token: token});
+    })(req, res, next);
+};
+
+exports.profile = async (req, res) => {
+    const {userId, roleId} = req;
+    return res.send({userId, roleId});
 }

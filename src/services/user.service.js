@@ -9,7 +9,7 @@ const checkEmail = (email) => User.findOne({
     }
 });
 
-const createUser = async (user) => await User.create({name: user.name, email: user.email, password: user.password});
+const createUser = async (user) => await User.create({roleId: 2, name: user.name, email: user.email, password: user.password});
 
 const getUserByEmail = (email) => User.findOne({
     where: {
@@ -17,8 +17,10 @@ const getUserByEmail = (email) => User.findOne({
     }
 });
 
+const getRoleUser = (roleId) => Role.findByPk(roleId, {attributes: ['name']});
 module.exports = {
     getUserByEmail,
     checkEmail,
-    createUser
+    createUser,
+    getRoleUser
 }
