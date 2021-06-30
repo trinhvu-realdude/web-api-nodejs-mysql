@@ -36,6 +36,8 @@ app.use(expressSession({secret: 'keyboard-cat', resave: false, saveUninitialized
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+// test upload file
 app.post('/upload', upload.single('file'), function(req, res) {
     console.log(req.file);
     res.send({
