@@ -5,11 +5,13 @@ module.exports = app => {
 
     const Router = require("express").Router();
 
+    Router.get('/sign-in', userController.signInPage);
+
     Router.post('/sign-up', userController.signUp);
 
     Router.post('/sign-in', userController.signIn);
 
-    Router.get('/profile', middleware.authenticateRole(["Admin", "Customer"]), userController.profile);
+    Router.get('/profile', middleware.authenticateCustomer(["Admin", "Customer"]), userController.profile);
 
     app.use('/', Router);
 };

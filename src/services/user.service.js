@@ -18,6 +18,7 @@ const getUserByEmail = (email) => User.findOne({
 });
 
 const getRoleUser = (roleId) => Role.findByPk(roleId, {attributes: ['name']});
+
 module.exports = {
     getUserByEmail,
     checkEmail,

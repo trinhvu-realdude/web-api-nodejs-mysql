@@ -5,6 +5,7 @@ const {hash, compare} = require("../common/hash");
 const config = require("../../config");
 const passport = require("passport");
 
+// Sign Up
 exports.signUp = async (req, res) => {
     try {
         const checkEmail = await userService.checkEmail(req.body.email);
@@ -30,6 +31,7 @@ exports.signUp = async (req, res) => {
     }
 };
 
+// Sign In
 exports.signIn = async (req, res, next) => {
     passport.authenticate('local-login', async (err, user) => {
         if (err) {
@@ -52,4 +54,10 @@ exports.signIn = async (req, res, next) => {
 exports.profile = async (req, res) => {
     const {userId, roleId} = req;
     return res.send({userId, roleId});
+};
+
+exports.signInPage = async (req, res) => {
+    res.render('login', {
+        title: 'sign-in'
+    })
 }
