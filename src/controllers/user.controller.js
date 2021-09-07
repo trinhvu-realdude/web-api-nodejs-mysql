@@ -56,8 +56,8 @@ exports.profile = async (req, res) => {
     return res.send({userId, roleId});
 };
 
-exports.signInPage = async (req, res) => {
-    res.render('login', {
-        title: 'sign-in'
+exports.homePage = async (req, res) => {
+    res.render('home', {
+        title: 'home'
     })
 }

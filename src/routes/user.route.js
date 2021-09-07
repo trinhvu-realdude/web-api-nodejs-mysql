@@ -3,15 +3,15 @@ module.exports = app => {
 
     const middleware = require("../middleware/authentication");
 
-    const Router = require("express").Router();
+    const router = require("express").Router();
 
-    Router.get('/sign-in', userController.signInPage);
+    router.get('/home', userController.homePage);
 
-    Router.post('/sign-up', userController.signUp);
+    router.post('/sign-up', userController.signUp);
 
-    Router.post('/sign-in', userController.signIn);
+    router.post('/sign-in', userController.signIn);
 
-    Router.get('/profile', middleware.authenticateCustomer(["Admin", "Customer"]), userController.profile);
+    router.get('/profile', middleware.authenticateCustomer(["Admin", "Customer"]), userController.profile);
 
-    app.use('/', Router);
+    app.use('/', router);
 };

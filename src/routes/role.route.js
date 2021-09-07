@@ -1,9 +1,9 @@
 module.exports = app => {
     const roleController = require("../controllers/role.controller");
 
-    const Router = require("express").Router();
+    const router = require("express").Router();
 
-    Router.post('/roles', roleController.createRole);
+    router.post('/roles', roleController.createRole);
 
-    app.use('/', Router);
+    app.use('/', router);
 }

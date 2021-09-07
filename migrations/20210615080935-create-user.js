@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      roleId: {
+        type: Sequelize.INTEGER
+      },
       name: {
         type: Sequelize.STRING
       },
@@ -31,9 +34,6 @@ module.exports = {
       },
       url_img: {
         type: Sequelize.STRING
-      },
-      roleId: {
-        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
